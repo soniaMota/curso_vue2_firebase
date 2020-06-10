@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+</head>
+<body>
+    <main>
+        <ul>
+            <li v-for="tarea in tareas">
+                {{tarea}}
+            </li>
+        </ul>
+        <!-- La siguiente línea se usa para Vanilla JavaScript -->
+        <!-- <input type="text" placeholder="Introduce tu tarea"> -->
+
+        <!-- La siguiente línea indica, para Vue, que, al hacer click en el botón,
+        tengo acceso desde la función "agregarTarea" al modelo que representa
+        la nueva tarea que quiero añadir -->
+        <!-- <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea"> -->
+        <!-- Si, en lugar de añadir la tarea al pulsar en el botón, quisiéramos
+        que se añadiera al pulsar el botón enter, en lugar de "v-on:click",
+        escribiríamos, después de "v-model="nuevaTarea"", "v-on:keyup.enter="agregarTarea"" -->
+        
+        <!-- La siguiente línea se usa para Vanilla JavaScript -->
+        <!-- <input type="button" value="Enviar tarea" onclick="agregarTarea()"> -->
+        
+        <!-- La siguiente línea es la que usamos con Vue -->
+        <!-- <input type="button" value="Enviar tarea" v-on:click="agregarTarea"> -->
+        
+        <!-- Si queremos que estos input estén dentro de un formulario lo haríamos de la siguiente forma -->
+        <form v-on:submit.prevent="agregarTarea">
+            <input type="text" placeholder="Introduce tu tarea" v-model="nuevaTarea">  
+            <input type="submit" value="Enviar tarea">
+        </form>
+        <!-- Observemos que ya no tenemos un botón, sino un submit, ya que estamos en un formulario -->
+        <!-- También vemos cómo, el v-on:click, lo hemos cambiado por v-on:submit
+        y lo hemos añadido, no al botón, sino al formulario. Además, hay que añadir
+        prevent para que no recargue el formulario directamente y lo reinicie.
+        Si no ponemos prevent, se guarda la tarea en la lista, pero inmediatamente
+        reinicia y vuelve la lista original -->
+        
+        <pre>{{$data}}</pre>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
